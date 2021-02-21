@@ -1,7 +1,9 @@
+//como es una verisón nueva de firebase, se tiene q poner esto
 import { firebaseApp } from './firebase'
 import firebase from 'firebase'
 require('firebase/firestore')
 
+// Es para uan versión "antigua" de firebase q no tengo instalada
 //import { firebaseApp } from './firebase'
 //import * as firebase from 'firebase'
 //import 'firebase/firestore'
@@ -13,6 +15,7 @@ export const isUserLogged = () => {
     firebase.auth().onAuthStateChanged((user) => {
         user !== null && (isLogged = true)
     })
+    return isLogged
 }
 
 export const getCurrentUser = () => {

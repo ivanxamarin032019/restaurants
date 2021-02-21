@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import Loading from '../../Components/Loading'
-import { getCurrentUser } from '../../Utils/actions'
+import { isUserLogged } from '../../Utils/actions'
 
 import UserGuest from './UserGuest'
 import UserLogged from './UserLogged'
@@ -10,8 +10,7 @@ export default function Account() {
     const [login, setLogin] = useState(null)
 
     useEffect(() => {
-        const user = getCurrentUser()
-        user ? setLogin(true) : setLogin(false)
+        setLogin(isUserLogged())
     }, [])
 
     if (login == null) {
