@@ -1,28 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, platform } from 'react-native'
 import { Button } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native'
-import Toast, {DURATION} from 'react-native-easy-toast'
+import Toast from 'react-native-easy-toast'
 
 
 import { closeSession, getCurrentUser } from '../../utils/actions'
 import Loading from '../../components/Loading'
 import InfoUser from '../../components/account/InfoUser'
+import AccountOptions from '../../components/account/AccountOptions'
 
 export default function UserLogged() {
     const toastRef = useRef()
     const navigation = useNavigation()
-
     const [loading, setLoading] = useState(false)
     const [loadingText, setLoadingText] = useState("")
     const [user, setUser] = useState(null)
+
 
     useEffect(() => {
         setUser(getCurrentUser())
     }, [])
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             {
                 user && (
                     <View>
@@ -31,7 +32,10 @@ export default function UserLogged() {
                             setLoading={setLoading} 
                             setLoadingText={setLoadingText}
                         />
-                        <Text>Accont Options</Text>
+                    <AccountOptions
+                        user={user} 
+                        toastRef={toastRef}
+                        />
                     </View>
                 )
             }
@@ -46,7 +50,9 @@ export default function UserLogged() {
             />
             <Toast ref={toastRef} position="center" opacity={0.9} />
             <Loading isVisible={loading} text={loadingText}/>
-        </View>
+           
+
+        </ScrollView>
     )
 }
 

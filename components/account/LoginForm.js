@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
 import { Input, Icon, Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { isEmpty } from "lodash";
@@ -7,6 +7,7 @@ import { isEmpty } from "lodash";
 import Loading from "../Loading";
 import { validateEmail } from "../../utils/helpers";
 import { loginWithEmailAndPassword } from "../../utils/actions";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,6 +18,7 @@ export default function LoginForm() {
 
   const navigation = useNavigation();
 
+ 
   const onChange = (e, type) => {
     setFormData({ ...formData, [type]: e.nativeEvent.text });
   };
@@ -26,7 +28,8 @@ export default function LoginForm() {
       return;
     }
 
-    setLoading(true);
+          setLoading(true);
+    
     const result = await loginWithEmailAndPassword(
       formData.email,
       formData.password
@@ -59,7 +62,7 @@ export default function LoginForm() {
 
     return isValid;
   };
-
+  
   return (
     <View style={styles.container}>
       <Input
@@ -93,7 +96,26 @@ export default function LoginForm() {
         buttonStyle={styles.btn}
         onPress={() => doLogin()}
       />
+     
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() => doLogin()}
+      >
+        <Text>Press Here</Text>
+      </TouchableOpacity>
+
+<Button
+        title="Iniciar Sesión"
+        loading
+        i
+        isVisible= {false}
+        containerStyle={styles.btnContainer}
+        buttonStyle={styles.btn}
+        onPress={() => doLogin()}
+/>
+
       <Loading isVisible={loading} text="Iniciando Sesión...." />
+      
     </View>
   );
 }

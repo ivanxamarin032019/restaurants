@@ -16,7 +16,10 @@ export const loadImageFromGallery = async(array) => {
         return response
     }
     
-    const result = await ImagePicker.launchImageLibraryAsync({
+        //Para que salga DIRECTAMENTE la cámara de fotos
+        // const pickerResult = ImagePicker.launchCameraAsync()
+        const result = await ImagePicker.launchImageLibraryAsync({
+    
         allowsEditing: true,
         aspect: array
     })
