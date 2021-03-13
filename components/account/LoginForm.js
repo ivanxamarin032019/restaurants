@@ -91,7 +91,11 @@ export default function LoginForm() {
                 buttonStyle={styles.btn}
                 onPress={() => doLogin()}
             />
-            <Loading isVisible={loading} text="Iniciando Sesión..."/>
+            {/* <Loading isVisible={loading} text="Iniciando Sesión..."/> */}
+            {loading && <Loading isVisible={loading} text="Iniciando Session..." />}
+
+
+
         </View>
     )
 }

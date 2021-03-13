@@ -48,7 +48,9 @@ export default function UserLogged() {
         }}
       />
       <Toast ref={toastRef} position="center" opacity={0.9} />
-      <Loading isVisible={loading} text={loadingText} />
+      {/* <Loading isVisible={loading} text={loadingText} /> */}
+      {loading && <Loading isVisible={loading} text={loadingText}  />}
+
     </ScrollView>
   );
 }

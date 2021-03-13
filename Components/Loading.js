@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     view: {
        flex: 1,
        alignItems: "center",
-       justifyContent: "center" 
+       justifyContent: "flex-end",
     },
     text: {
         color: "#442484",

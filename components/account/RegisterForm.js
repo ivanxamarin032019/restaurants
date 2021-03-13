@@ -124,7 +124,9 @@ export default function RegisterForm() {
         buttonStyle={styles.btn}
         onPress={() => doregisterUser()}
       />
-      <Loading isVisible={loading} text="Creando cuenta...." />
+      {/* <Loading isVisible={loading} text="Creando cuenta...." /> */}
+      {loading && <Loading isVisible={loading} text="Iniciando Session..." />}
+
     </View>
   );
 }
